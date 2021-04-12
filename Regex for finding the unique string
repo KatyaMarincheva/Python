@@ -1,0 +1,14 @@
+def find_uniq(arr):
+    import re
+    
+    arrstr = "**"
+    arrstr = "*" + arrstr.join(arr) + "*"
+    
+    if arr[0]:   
+        regex = r"(?<=\*)([%s]+)(?=\*)" % (arr[0])
+        matches1 = re.findall(regex, arrstr, re.IGNORECASE)
+        s =  matches1[0]  if len(matches1) == 1 else re.sub(regex, "", arrstr, 0, re.IGNORECASE)
+        s = re.sub(r"\*+", "", s)
+    else:
+        s = re.sub(r"\*+", "", arrstr)
+    return s
